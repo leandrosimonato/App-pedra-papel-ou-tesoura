@@ -1,0 +1,25 @@
+
+
+.title-cabecalho {
+	text-align: center;
+}
+
+.player-options img {
+	max-width: 200px;
+	opacity: 0.3;
+	cursor: pointer;
+}
+
+.enemy-options img {
+	max-width: 200px;
+	opacity: 0.3;
+	cursor: pointer;
+}
+
+.align {
+	display: flex;
+}
+
+.player-options, .enemy-options {
+	width: 50%;
+}
