@@ -8,8 +8,7 @@
 		<link rel="stylesheet" href="./css/style.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Economica:wght@700&family=Sacramento&display=swap"
-			rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
@@ -20,6 +19,9 @@
 		<h1 class="title-cabecalho">
 			Pedra ou Papel ou Tesoura!
 		</h1>
+		<h2 class="vencedor">
+
+		</h2>
 		<hr>
 		<div class="align">
 			<div class="player-options">
@@ -39,6 +41,46 @@
 			var playerOpt = "";
 			var inimigoOpt = "";
 
+			function validaVitoria() {
+				let vencedor = document.querySelector('.vencedor')
+				if (playerOpt == "Papel") {
+					if (inimigoOpt == "Papel") {
+						// Empatamos!
+						vencedor.innerHTML = "O jogo empatou!";
+					} else if (inimigoOpt == "Tesoura") {
+						// O inimigo ganhou!
+						vencedor.innerHTML = "O inimigo ganhou!";
+					} else if (inimigoOpt == "Pedra") {
+						// Player ganhou!
+						vencedor.innerHTML = "O player ganhou!";
+					}
+				}
+				if (playerOpt == "Tesoura") {
+					if (inimigoOpt == "Papel") {
+						// Player ganhou!
+						vencedor.innerHTML = "O player ganhou!";
+					} else if (inimigoOpt == "Tesoura") {
+						// Empatamos!
+						vencedor.innerHTML = "O jogo empatou!";
+					} else if (inimigoOpt == "Pedra") {
+						// O inimigo ganhou!
+						vencedor.innerHTML = "O inimigo ganhou!";
+					}
+				}
+				if (playerOpt == "Pedra") {
+					if (inimigoOpt == "Papel") {
+						// O inimigo ganhou!
+						vencedor.innerHTML = "O inimigo ganhou!";
+					} else if (inimigoOpt == "Tesoura") {
+						// Player ganhou!
+						vencedor.innerHTML = "O player ganhou!";
+					} else if (inimigoOpt == "Pedra") {
+						// Empatamos!
+						vencedor.innerHTML = "O jogo empatou!";
+					}
+				}
+			}
+
 			function resetInimigo() {
 				const enemyOptions = document.querySelectorAll('.enemy-options div');
 				for (var i = 0; i < enemyOptions.length; i++) {
@@ -47,7 +89,7 @@
 			}
 
 			function inimigoJogar() {
-				let rand = Math.floor(Math.random()*3);
+				let rand = Math.floor(Math.random() * 3);
 				const enemyOptions = document.querySelectorAll('.enemy-options div');
 				resetInimigo();
 				for (var i = 0; i < enemyOptions.length; i++) {
@@ -56,8 +98,11 @@
 						inimigoOpt = enemyOptions[i].childNodes[0].getAttribute('opt')
 					}
 				}
-				alert(playerOpt);
-				alert(inimigoOpt);
+
+				validaVitoria();
+
+				// alert(playerOpt);
+				// alert(inimigoOpt);
 			}
 
 			function resetOpacityPlayer() {
@@ -66,16 +111,17 @@
 				}
 			}
 
-			  for (var i = 0; i < elementos.length; i++) {
-					elementos[i].addEventListener('click', function(t) {
-						resetOpacityPlayer();
-						t.target.style.opacity = 1;
-						playerOpt = t.target.getAttribute('opt');
+			for (var i = 0; i < elementos.length; i++) {
+				elementos[i].addEventListener('click', function (t) {
+					resetOpacityPlayer();
+					t.target.style.opacity = 1;
+					playerOpt = t.target.getAttribute('opt');
 
-						inimigoJogar();
-						alert(playerOpt);
-					});
-				}
+					inimigoJogar();
+					alert(playerOpt);
+				});
+			}
+
 		</script>
 	</body>
 
